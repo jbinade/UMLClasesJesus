@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class Event{
+    date: Date
+    description: String
+    assign(l: Location): void
+}
+
+class Conference{
+    max_attendees: Integer
+
+}
+
+class BoardMeeting
+
+class Person{
+    name: String
+
+}
+
+class Member{
+    e-mail: String
+
+}
+
+class BoardMember{
+
+}
+
+class Location{
+    description: String
+    address: String
+
+}
+
+class AAUOC{
+    newLocation(l: Location): void
+    newEvent(e: Event): void
+    newPerson(p:Person): void
+    informEvent(e: Event): void
+    register(m: Member,(e: Event): void
+
+}
+
+Event <|-- Conference
+Event <|-- BoardMeeting
+Person <|-- Member
+Member <|-- BoardMember: attendsTo
+
+Member "0..*" -- "0..*" Event: attendsTo
+BoardMeeting "0..*" -- "0..*" BoardMember
+Conference "0..*" -- "0..*" Person: attendsTo
+Event "0..*" -- "1" Location: IsLocated In
+
+AAUOC o-- "0..*" Person
+AAUOC o-- "0..*" Location
+AAUOC o-- "0..*" Event
+
+@enduml
